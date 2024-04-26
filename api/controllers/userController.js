@@ -1,6 +1,5 @@
 import User from "../models/Usermodel.js";
 
-
 export const getUsersForSidebar = async (req, res) => {
 
     try {

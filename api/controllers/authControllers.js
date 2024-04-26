@@ -5,7 +5,7 @@ import bcryptjs from "bcryptjs"
 export const signup = async (req, res) => {
 
     try {
-        const { fullname, username, password, confirmPassword, gender } = req.body;
+        const { fullName, username, password, confirmPassword, gender } = req.body;
 
         if (password != confirmPassword) {
             return res.status(400).json({ error: "Password don't match" })
@@ -30,7 +30,7 @@ export const signup = async (req, res) => {
 
 
         const newUser = new User({
-            fullname,
+            fullName,
             username,
             password: hashedPassword,
             gender,
@@ -45,7 +45,7 @@ export const signup = async (req, res) => {
 
             res.status(201).json({
                 _id: newUser._id,
-                fullname: newUser.fullname,
+                fullName: newUser.fullName,
                 username: newUser.username,
                 profilePic: newUser.profilePic,
             })
@@ -63,9 +63,14 @@ export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        const isPasswordCorrect = await bcryptjs.compare(password, user?.password || "")
 
-        if (!user || !isPasswordCorrect) {
+        if (!user) {
+            return res.status(400).json({ error: "User not found" });
+        }
+
+        const isPasswordCorrect = await bcryptjs.compare(password, user.password);
+
+        if (!isPasswordCorrect) {
             return res.status(400).json({ error: "Invalid Credentials" });
         }
 
@@ -73,7 +78,7 @@ export const login = async (req, res) => {
 
         res.status(200).json({
             _id: user._id,
-            fullname: user.fullname,
+            fullName: user.fullName,
             username: user.username,
             profilePic: user.profilePic,
         });

@@ -1,15 +1,31 @@
-const Message = () => {
+import { useAuthContext } from "../../context/AuthContext";
+import { extractTime } from "../../utils/extractTime";
+import useConversation from "../../zustand/useConversation";
+
+
+const Message = ({ message }) => {
+
+    const { authUser } = useAuthContext();
+    const { selectedConversation } = useConversation();
+    const fromMe = message.senderId === authUser._id;
+    const formattedTime = extractTime(message.createdAt);
+    const chatClassName = fromMe ? 'chat-end' : 'chat-start';
+    const profilePic = fromMe ? authUser.profilePic : selectedConversation?.profilePic;
+    const bulbbleBgColor = fromMe ? 'bg-blue-500' : "";
+
+    const shakeClass = message.shouldShake ? "shake" : "";
+
     return (
-        <div className="chat chat-end">
+        <div className={`chat ${chatClassName}`}>
             <div className="chat-image avater">
                 <div className="w-10 rounded-full">
-                    <img src="data:image/png;base64,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" />
+                    <img src={profilePic} />
                 </div>
             </div>
-            <div className={'chat-bubble text-white bg-blue-500'}>Hi! what is  uo???</div>
-            <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">12:42</div>
+            <div className={`chat-bubble text-white ${bulbbleBgColor} ${shakeClass} pb-2`}>{message.message}</div>
+            <div className="chat-footer opacity-50 text-xs flex gap-1 items-center">{formattedTime}</div>
         </div>
     )
-}
+};
 
 export default Message;
