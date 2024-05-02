@@ -12,7 +12,8 @@
 
 ## API ROUTES DESCRIPTIONS
 ### Auth Routes
-#### 1.Endpoint: '/api/auth/signup'
+
+#### 1. Endpoint: '/api/auth/signup'
   * Description: This endpoint allows users to sign up for the application.
   * Method: POST
   * Input:
@@ -25,5 +26,57 @@
       * user (Object): Information about the newly signed-up user.
   * Logic:
       * Validates input data, checks if the username is already taken, hashes the password, generates a profile picture URL based on the gender, saves the user data to the database, and returns user information along with a JWT token.
+
+#### 2. Endpoint: '/api/auth/login'
+  * Description: This endpoint allows users to log in to the application.
+  * Method: POST
+  * Input:
+      * username (String): User's username.
+      * password (String): User's password.
+  * Output:
+      * user (Object): Information about the logged-in user.
+  * Logic:
+      * Validates input data, finds the user in the database by username, compares the hashed password, generates and sets a JWT token cookie, and returns user information upon successful login.
+
+#### 3. Endpoint: '/api/auth/logout'
+  * Description: This endpoint allows users to log out of the application.
+  * Method: POST
+  * Output:
+      * message (String): Confirmation message.
+  * Logic:
+      * Clears the JWT token cookie and returns a logout confirmation message.
+
+### Message Routes
+
+#### 1. Endpoint: '/api/messages/:id'
+  * Description: This endpoint retrieves messages between the logged-in user and another user.
+  * Method: GET
+  * Input:
+      * id (String): ID of the user to retrieve messages for.
+  * Output:
+      * messages (Array): Array of messages between the users.
+  * Logic:
+      * Retrieves the conversation between the logged-in user and the specified user, and returns the messages associated with that conversation.
+
+#### 2. Endpoint: '/api/messages/send/:id'
+  * Description: This endpoint allows the logged-in user to send a message to another user.
+  * Method: POST
+  * Input:
+      * id (String): ID of the user to send the message to.
+      * message (String): Content of the message.
+  * Logic:
+      * Finds or creates a conversation between the sender and receiver, saves the message to the conversation, emits a socket event to notify the receiver, and returns information about the sent message.
+
+### User Routes
+
+#### 1.  Endpoint: '/api/users'
+  * Description: This endpoint retrieves a list of users for the sidebar, excluding the logged-in user.
+  * Method: GET
+  * Output:
+      * users (Array): Array of user objects for the sidebar.
+  * Logic:
+      * Retrieves users from the database, excluding the logged-in user, and returns the list of users for the sidebar.
+   
+ 
   
 
