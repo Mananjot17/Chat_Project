@@ -80,7 +80,7 @@
 ### Evvironment Configuration 
 
   * PORT=5000
-  * MONGO_DB_URI = mongodb+srv://mananjotsingh17:mananjotsingh17@cluster0.j0v4hoe.mongodb.net/chat-app-db?retryWrites=true&w=majority&appName=Cluster0
+  * MONGO_DB_URI = (Enter your MongoDB connection string here)
   * JWT_SECRET = akjfckebvuibsrjkskjbkjb
   * NODE_ENV=development
 
