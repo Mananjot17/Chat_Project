@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "17499e15-20f1-4e95-9629-8dbeb5489c6d",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28975347"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\":\"test2\",\r\n    \"username\":\"test2\", \r\n    \"password\":\"test2\", \r\n    \"confirmPassword\":\"test2\", \r\n    \"gender\":\"female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/auth/signup"
+			},
+			"response": []
+		},
+		{
+			"name": "GET messages",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullname\":\"test4\",\r\n    \"username\":\"test4\", \r\n    \"password\":\"test4\", \r\n    \"confirmPassword\":\"test4\", \r\n    \"gender\":\"female\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/messages/663330cac1deda5696608d9b"
+			},
+			"response": []
+		},
+		{
+			"name": "message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"message\": \"hi bhai kesa h\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/messages/send/663330cac1deda5696608d9b"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"test4\",\r\n    \"password\":\"test4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/auth/login"
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"test2\",\r\n    \"password\":\"test2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:5000/api/auth/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "GET USers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:5000/api/users/"
+			},
+			"response": []
+		}
+	]
+}
