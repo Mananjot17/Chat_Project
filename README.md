@@ -76,6 +76,15 @@
       * users (Array): Array of user objects for the sidebar.
   * Logic:
       * Retrieves users from the database, excluding the logged-in user, and returns the list of users for the sidebar.
+
+### Evvironment Configuration 
+
+  * PORT=5000
+  * MONGO_DB_URI = mongodb+srv://mananjotsingh17:mananjotsingh17@cluster0.j0v4hoe.mongodb.net/chat-app-db?retryWrites=true&w=majority&appName=Cluster0
+  * JWT_SECRET = akjfckebvuibsrjkskjbkjb
+  * NODE_ENV=development
+
+
    
  
   
